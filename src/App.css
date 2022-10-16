@@ -1,0 +1,26 @@
+body {
+  background: rgb(243,243,243);
+  background: linear-gradient(0deg, rgba(243,243,243,1) 0%, rgba(172,201,225,1) 100%);
+  min-height: 100vh;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  font-size: 40px;
+  color: #fff;
+}
+.Boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+textarea {
+  border: 10px solid #fff;
+  background-color: transparent;
+  min-width: 40vw;
+  min-height: 30vh;
+}
