@@ -9,7 +9,7 @@ body {
 }
 
 .App-header {
-  font-size: 40px;
+  font-size: 30px;
   color: #fff;
 }
 .Boxes {
@@ -22,12 +22,14 @@ textarea {
   border: 10px solid #fff;
   background-color: transparent;
   min-width: 40vw;
+  max-width: calc(50vw -10);
   padding: 10px;
   min-height: 30vh;
+  box-sizing: border-box;
 }
 
 ::placeholder {
-  line-height: 30vh;
+  line-height: 20vh;
   text-align: center;
   font-weight: bold;
   font-size: 22px;
