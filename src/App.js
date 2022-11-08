@@ -17,17 +17,24 @@ function App() {
 
   const percent = Math.abs(diff / (lastChanged === 'hun' ? eng.length : hun.length) * 100);
   let score = 0;
+
+  const limits = {
+    eng: [15, 10, 5],
+    hun: [30, 21, 12]
+  }
+
+  const currentLimits = eng.length < hun.length ? limits.eng : limits.hun;
   
-  if(percent >= 15) {
+  if(percent >= currentLimits[0]) {
     score = 1;
   }
-  if(percent < 15) {
+  if(percent < currentLimits[0]) {
     score = 2;
   }
-  if(percent < 10) {
+  if(percent < currentLimits[1]) {
     score = 3;
   }
-  if(percent < 5) {
+  if(percent < currentLimits[2]) {
     score = 4;
   }
   if(hun === '' || eng === '') {
@@ -61,8 +68,8 @@ function App() {
 
   const Wording = () => (
     <>
-      {wordDiff !== 0 && <>{symbol}{Math.abs(wordDiff)} Szó </>}
-      {wordDiff === 0 && <>~ 0 </>}
+      {wordDiff !== 0 && <>{symbol}{Math.abs(wordDiff)} szó </>}
+      {wordDiff === 0 && <>~ 0 szó</>}
       különbség ({Math.abs(diff)} karakter)
       {eng.length < hun.length ? ' az angolhoz' : ' a magyarhoz'} képest
     </>
