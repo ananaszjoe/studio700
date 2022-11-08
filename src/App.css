@@ -36,10 +36,24 @@ textarea {
   color: #fff;
 }
 
-p {
+.result {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   width: 100%;
+  margin-top: 20px;
+}
+
+.fifty {
+  flex-grow: 1;
+  width: 50%;
+}
+
+.fifty:first-child {
+  text-align: right;
+}
+
+.fifty:last-child {
+  text-align: left;
 }

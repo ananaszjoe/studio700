@@ -6,11 +6,6 @@ import good from './3.png';
 import excellent from './4.png';
 import './App.css';
 
-const limits = {
-  eng: [10, 20, 30],
-  hun: [5, 10, 15]
-}
-
 function App() {
   const [hun, setHun] = useState('');
   const [eng, setEng] = useState('');
@@ -20,22 +15,8 @@ function App() {
   const wordDiff = Math.floor(diff / 6.5);
   const symbol = wordDiff > 0 ? '+' : '-';
 
-  const percent = Math.abs(diff / (lastChanged == 'hun' ? eng.length : hun.length) * 100);
+  const percent = Math.abs(diff / (lastChanged === 'hun' ? eng.length : hun.length) * 100);
   let score = 0;
-/*
-  if(percent >= limits[lastChanged][2]) {
-    score = 1;
-  }
-  if(percent < limits[lastChanged][2]) {
-    score = 2;
-  }
-  if(percent < limits[lastChanged][1]) {
-    score = 3;
-  }
-  if(percent < limits[lastChanged][0]) {
-    score = 4;
-  }
-*/
   
   if(percent >= 15) {
     score = 1;
@@ -49,7 +30,7 @@ function App() {
   if(percent < 5) {
     score = 4;
   }
-  if(hun == '' || eng == '') {
+  if(hun === '' || eng === '') {
     score = 0;
   }
 
@@ -65,7 +46,7 @@ function App() {
 
   function Bar() {
     return (
-      <span className='Bar' style={{backgroundColor: colors[score], height: 20, width: 20 + Math.min(100, diff)}} />
+      <span className='Bar' style={{ verticalAlign: 'middle', margin: '0 16px', display: 'inline-block', backgroundColor: colors[score], height: 20, width: 20 + Math.min(100, diff)}} />
     )
   }
 
@@ -78,6 +59,15 @@ function App() {
     setLastChanged('eng');
   }
 
+  const Wording = () => (
+    <>
+      {wordDiff !== 0 && <>{symbol}{Math.abs(wordDiff)} Szó </>}
+      {wordDiff === 0 && <>~ 0 </>}
+      különbség ({Math.abs(diff)} karakter)
+      {eng.length < hun.length ? ' az angolhoz' : ' a magyarhoz'} képest
+    </>
+  )
+
   return (
     <div className="App">
       <header className="App-header">
@@ -88,14 +78,30 @@ function App() {
         <textarea onChange={handleHunChange} placeholder='Magyar'></textarea>
       </section>
 
-      <p>
+      <div className="result">
+        <div className="fifty">
+          <p>
+            {eng.length >= hun.length && (
+              <>
+                <Wording />
+                <Bar />
+              </>
+            )}
+          </p>
+        </div>
         <Smiley />
-        <Bar />
-        {wordDiff !== 0 && <>{symbol}{Math.abs(wordDiff)} Szó </>}
-        {wordDiff === 0 && <>~ 0 </>}
-        különbség ({Math.abs(diff)} karakter)
-        {lastChanged == 'hun' ? ' az angolhoz' : ' a magyarhoz'} képest
-      </p>
+        <div className="fifty">
+          <p>
+            {eng.length < hun.length && (
+              <>
+                <Bar />
+                <Wording />
+              </>
+            )}
+          </p>
+        </div>
+        
+      </div>
     </div>
   );
 }
