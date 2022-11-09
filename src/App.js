@@ -69,7 +69,7 @@ function App() {
   const Wording = () => (
     <>
       {wordDiff !== 0 && <>{symbol}{Math.abs(wordDiff)} szó </>}
-      {wordDiff === 0 && <>~ 0 szó</>}
+      {wordDiff === 0 && <>~ 0 szó </>}
       különbség ({Math.abs(diff)} karakter)
       {eng.length < hun.length ? ' az angolhoz' : ' a magyarhoz'} képest
     </>
